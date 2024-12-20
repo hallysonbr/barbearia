@@ -1,0 +1,27 @@
+@import '../../../assets/scss/styles';
+
+.dashboard {
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: $border-radius;
+
+  .dashboard-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: $primary-color;
+  }
+
+  .dashboard-cards {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-cards {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}

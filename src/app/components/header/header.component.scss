@@ -1,0 +1,25 @@
+@import '../../../assets/scss/styles';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: $primary-color;
+  color: #fff;
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .nav a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

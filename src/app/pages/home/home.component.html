@@ -1,0 +1,8 @@
+<section class="dashboard">
+  <h3 class="dashboard-title">Resumo de Atendimentos</h3>
+  <div class="dashboard-cards">
+    <app-card title="Atendimentos de Hoje" [count]="atendimentosHoje"></app-card>
+    <app-card title="Aguardando Atendimento" [count]="aguardandoAtendimento"></app-card>
+    <app-card title="Agendamentos para Amanhã" [count]="agendamentosAmanha"></app-card>
+  </div>
+</section>

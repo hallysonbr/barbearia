@@ -1,0 +1,34 @@
+// Importe variáveis de estilo e topografia de fontes
+@import 'variables';
+@import 'fonts';
+
+// Defina altura e largura padrão para o corpo do site
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  //overflow: hidden; // Isso impede a barra de rolagem vertical quando não for necessário
+}
+
+// Estilos globais
+body {
+  font-family: $font-family-primary;
+  font-size: $font-size-medium;
+  color: $text-color;
+  background-color: #f8f8f8;
+}
+
+// Exemplo de classe personalizada usando as variáveis
+.custom-button {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: $border-radius;
+  font-size: $font-size-small;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+}
