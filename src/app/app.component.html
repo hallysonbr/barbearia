@@ -1,5 +1,5 @@
-<app-header></app-header>
+<app-header *appShowIfAuth></app-header>
 <main class="container">
   <router-outlet></router-outlet>
 </main>
-<app-footer></app-footer>
+<app-footer *appShowIfAuth></app-footer>

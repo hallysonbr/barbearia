@@ -1,0 +1,38 @@
+<div class="login-page">
+  <app-card title="Login">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          placeholder="Digite seu e-mail"
+          [class.invalid]="email?.invalid && email?.touched"
+        />
+        <small *ngIf="email?.invalid && email?.touched" class="error-message">
+          {{ getEmailErrorMessage() }}
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          placeholder="Digite sua senha"
+          [class.invalid]="password?.invalid && password?.touched"
+        />
+        <small *ngIf="password?.invalid && password?.touched" class="error-message">
+          A senha é obrigatória.
+        </small>
+      </div>
+
+      <button class="custom-button" type="submit" [disabled]="loginForm.invalid">
+        Entrar
+      </button>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    </form>
+  </app-card>
+</div>

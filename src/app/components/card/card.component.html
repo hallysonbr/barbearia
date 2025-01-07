@@ -1,5 +1,6 @@
 <div class="card">
-  <h4>{{ title }}</h4>
-  <p class="count">{{ count }}</p>
+  <h2>{{ title }}</h2>
+  <ng-content></ng-content>
+  <p class="count" *ngIf="count > 0">{{ count }}</p>
 </div>
 
