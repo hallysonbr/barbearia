@@ -9,23 +9,26 @@
   color: #fff;
 
   .logo {
-    font-size: 24px;
+    font-size: $font-size-extra-large;
     font-weight: bold;
   }
 
-  .nav a {
-    margin: 0 10px;
-    color: #fff;
-    text-decoration: none;
+  .nav {
+    transition: all 0.3s ease-in-out; // Animação suave ao mudar o estado
+    a {
+      margin: 0 10px;
+      color: $card-background-color;
+      text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
+      &:hover {
+        text-decoration: underline;
+      }
     }
-  }
+}
 
   .menu-icon {
     display: none;
-    font-size: 24px;
+    font-size: $font-size-extra-large;
     cursor: pointer;
   }
 
@@ -39,13 +42,19 @@
       width: 200px;
       text-align: center;
       padding: 10px;
-      display: none;
+      display: flex;
+      opacity: 0;
+      transform: translateY(-10px); // Começa um pouco acima
+      transition: opacity 0.3s ease, transform 0.3s ease;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      border: 1px solid #fff;
+      border-radius: $border-radius;
+      border: 1px solid $card-background-color;
+      pointer-events: none;
 
       &.open {
-        display: flex;
+        opacity: 1;
+        transform: translateY(0); // Desliza para baixo suavemente
+        pointer-events: auto;
       }
 
       li {
