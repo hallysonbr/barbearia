@@ -1,10 +1,13 @@
 <header class="header">
   <h1 class="logo">Barbearia Clássica</h1>
-  <nav class="nav">
+  <nav class="nav" [class.open]="menuOpen">
     <a routerLink="/home">Home</a>
     <a routerLink="/services">Serviços</a>
     <a routerLink="/contact">Contato</a>
     <a routerLink="logout()">Sair</a>
   </nav>
+  <div class="menu-icon" (click)="toggleMenu()">
+    ☰
+  </div>
 </header>
 

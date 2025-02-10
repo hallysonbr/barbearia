@@ -22,4 +22,44 @@
       text-decoration: underline;
     }
   }
+
+  .menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    .nav {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      background-color: $primary-color;
+      flex-direction: column;
+      width: 200px;
+      text-align: center;
+      padding: 10px;
+      display: none;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      border: 1px solid #fff;
+
+      &.open {
+        display: flex;
+      }
+
+      li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+
+    .menu-icon {
+      display: block;
+    }
+  }
 }
