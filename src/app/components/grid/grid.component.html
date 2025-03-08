@@ -1,0 +1,8 @@
+<div class="grid-container">
+  <div class="grid-card" *ngFor="let item of items">
+    <span class="icon" *ngIf="item.icon">{{ item.icon }}</span>
+    <h2>{{ item.name}}</h2>
+    <p>{{ item.description }}</p>
+    <span class="price" *ngIf="item.price">{{ item.price }}</span>
+  </div>
+</div>

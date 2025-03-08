@@ -1,0 +1,48 @@
+@import '../../../assets/scss/styles';
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.grid-card {
+  background: $card-background-color;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 20px;
+    color: $text-color;
+    margin: 10px 0;
+  }
+
+  p {
+    font-size: 16px;
+    color: $muted-text-color;
+  }
+
+  .price {
+    font-size: 18px;
+    color: $secondary-color;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+  }
+}

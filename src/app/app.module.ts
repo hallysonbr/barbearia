@@ -11,6 +11,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './services/auth.service';
 import { ShowIfAuthDirective } from './directives/show-if-auth.directive';
+import { WorkServicesComponent } from './pages/work-services/work-services.component';
+import { GridComponent } from './components/grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ShowIfAuthDirective } from './directives/show-if-auth.directive';
     CardComponent,
     HomeComponent,
     LoginComponent,
-    ShowIfAuthDirective
+    ShowIfAuthDirective,
+    WorkServicesComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
