@@ -13,6 +13,8 @@ import { AuthService } from './services/auth.service';
 import { ShowIfAuthDirective } from './directives/show-if-auth.directive';
 import { WorkServicesComponent } from './pages/work-services/work-services.component';
 import { GridComponent } from './components/grid/grid.component';
+import { UsersComponent } from './pages/users/users.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { GridComponent } from './components/grid/grid.component';
     LoginComponent,
     ShowIfAuthDirective,
     WorkServicesComponent,
-    GridComponent
+    GridComponent,
+    UsersComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

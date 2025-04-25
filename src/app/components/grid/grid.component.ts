@@ -8,4 +8,10 @@ import { GridItem } from 'src/app/interfaces/grid-item';
 })
 export class GridComponent {
   @Input() items: GridItem[] = [];
+
+  getKeys(item: any) {
+    const keys = Object.keys(item || {});
+    console.log(keys)
+    return keys
+  }
 }

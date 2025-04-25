@@ -1,0 +1,25 @@
+@import '../../../assets/scss/styles';
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+
+  th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    color: $text-color;
+  }
+
+  th {
+    background-color: $primary-color;
+    color: white;
+  }
+
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+}

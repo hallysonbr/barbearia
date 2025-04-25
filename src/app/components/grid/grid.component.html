@@ -1,8 +1,8 @@
 <div class="grid-container">
   <div class="grid-card" *ngFor="let item of items">
     <span class="icon" *ngIf="item.icon">{{ item.icon }}</span>
-    <h2>{{ item.name }}</h2>
-    <p>{{ item.description }}</p>
+    <h2>{{ item.item.prop1 }}</h2>
+    <p *ngFor="let key of getKeys(item.item)">{{ item.item[key] }}</p>
     <span class="price" *ngIf="item.price">{{ item.price }}</span>
   </div>
 </div>

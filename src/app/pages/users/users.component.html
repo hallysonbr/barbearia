@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="title">Usuários Cadastrados</h1>
+  <p class="subtitle">Confira abaixo a lista de usuários registrados no sistema.</p>
+
+  <div class="visualization-toggle">
+    <button (click)="toogleExibition('cards')" [class.active]="viewMode === 'cards'">Cards</button>
+    <button (click)="toogleExibition('table')" [class.active]="viewMode === 'table'">Tabela</button>
+  </div>
+
+  <ng-container *ngIf="viewMode === 'cards'">
+    <app-grid [items]="users" tipo="usuarios"></app-grid>
+  </ng-container>
+
+  <ng-container *ngIf="viewMode === 'table'">
+    <app-table [data]="users" [columns]="colunas"></app-table>
+  </ng-container>
+</div>
