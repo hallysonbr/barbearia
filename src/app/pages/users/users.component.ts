@@ -17,6 +17,8 @@ export class UsersComponent implements OnInit {
 
   colunas = ['nome', 'email', 'telefone'];
 
+  exibirFormulario = false;
+
   ngOnInit(): void {
     this.verifyWindowSize();
   }
@@ -30,5 +32,25 @@ export class UsersComponent implements OnInit {
 
   toogleExibition(option: 'cards' | 'table') {
     this.viewMode = option;
+  }
+
+  addUser(user: any) {
+    const newUser = {
+      item: {
+        prop1: user?.name,
+        prop2: user?.email,
+        prop3: user?.phone
+      }
+    }
+    this.users.push(newUser);
+    this.exibirFormulario = false;
+  }
+
+  exibirForm() {
+    this.exibirFormulario = true;
+  }
+
+  cancelRegister() {
+    this.exibirFormulario = false;
   }
 }

@@ -7,6 +7,18 @@
     <button (click)="toogleExibition('table')" [class.active]="viewMode === 'table'">Tabela</button>
   </div>
 
+  <button class="add-btn" (click)="exibirForm()">Novo Usuário</button>
+
+  <app-modal
+    *ngIf="exibirFormulario"
+    title="Novo Usuário"
+    (close)="cancelRegister()">
+      <app-users-form
+      (save)="addUser($event)"
+      (cancel)="cancelRegister()">
+      </app-users-form>
+  </app-modal>
+
   <ng-container *ngIf="viewMode === 'cards'">
     <app-grid [items]="users" tipo="usuarios"></app-grid>
   </ng-container>

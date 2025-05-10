@@ -15,6 +15,8 @@ import { WorkServicesComponent } from './pages/work-services/work-services.compo
 import { GridComponent } from './components/grid/grid.component';
 import { UsersComponent } from './pages/users/users.component';
 import { TableComponent } from './components/table/table.component';
+import { UsersFormComponent } from './pages/users/users-form/users-form.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { TableComponent } from './components/table/table.component';
     WorkServicesComponent,
     GridComponent,
     UsersComponent,
-    TableComponent
+    TableComponent,
+    UsersFormComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

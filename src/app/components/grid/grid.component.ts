@@ -11,7 +11,6 @@ export class GridComponent {
 
   getKeys(item: any) {
     const keys = Object.keys(item || {});
-    console.log(keys)
     return keys
   }
 }
