@@ -3,16 +3,30 @@
     <div class="form-group">
       <label>Nome</label>
       <input formControlName="name" type="text" />
+      <small *ngIf="name?.invalid && name?.touched" class="error-message">
+          {{ getNameErrorMessage() }}
+      </small>
     </div>
 
     <div class="form-group">
       <label>Email</label>
       <input formControlName="email" type="email" />
+      <small *ngIf="email?.invalid && email?.touched" class="error-message">
+          {{ getEmailErrorMessage() }}
+      </small>
     </div>
 
     <div class="form-group">
       <label>Celular</label>
-      <input formControlName="phone" type="text" />
+      <input
+      formControlName="phone"
+      type="text"
+      placeholder="(00) 0 0000-0000"
+      mask="(00) 0 0000-0000"
+    />
+      <small *ngIf="phone?.invalid && phone?.touched" class="error-message">
+          {{ getPhoneErrorMessage() }}
+      </small>
     </div>
 
     <div class="form-buttons">

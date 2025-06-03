@@ -2,7 +2,9 @@
   <div class="grid-card" *ngFor="let item of items">
     <span class="icon" *ngIf="item.icon">{{ item.icon }}</span>
     <h2>{{ item.item.prop1 }}</h2>
-    <p *ngFor="let key of getKeys(item.item)">{{ item.item[key] }}</p>
-    <span class="price" *ngIf="item.price">{{ item.price }}</span>
+    <p *ngFor="let key of getKeys(item.item)">
+      {{ formatValueByKey(item.item[key], key) }}
+    </p>
+    <span class="price" *ngIf="item.price">{{ item.price | currency: 'BRL':'symbol':'1.2-2':'pt-BR' }}</span>
   </div>
 </div>

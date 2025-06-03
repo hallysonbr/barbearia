@@ -19,6 +19,42 @@ export class UsersFormComponent {
     });
   }
 
+  get name() {
+    return this.form.get('name');
+  }
+
+  get email() {
+    return this.form.get('email');
+  }
+
+  get phone() {
+    return this.form.get('phone');
+  }
+
+  getNameErrorMessage(): string {
+    if (this.name?.hasError('required')) {
+      return 'O nome é obrigatório.';
+    }
+    return '';
+  }
+
+  getEmailErrorMessage(): string {
+    if (this.email?.hasError('required')) {
+      return 'O email é obrigatório.';
+    }
+    if (this.email?.hasError('email')) {
+      return 'O email deve ser um email válido.';
+    }
+    return '';
+  }
+
+  getPhoneErrorMessage(): string {
+    if (this.phone?.hasError('required')) {
+      return 'O telefone é obrigatório.';
+    }
+    return '';
+  }
+
   onSubmit() {
     if (this.form.valid) {
       const user = {

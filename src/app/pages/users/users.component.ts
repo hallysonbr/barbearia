@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-users',
@@ -7,10 +8,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
   users = [
-    { item: {prop1: 'Carlos Silva', prop2: 'carlos@gmail.com', prop3: '(11) 91234-5678'} },
-    { item: {prop1: 'Mariana Rocha', prop2: 'mariana@hotmail.com', prop3: '(21) 99876-5432'} },
-    { item: {prop1: 'João Mendes', prop2: 'joao.mendes@yahoo.com', prop3: '(31) 95555-4444'} },
-    { item: {prop1: 'Ana Paula', prop2: 'ana.paula@empresa.com', prop3: '(41) 96666-7777'} }
+    { item: {prop1: 'Carlos Silva', prop2: 'carlos@gmail.com', phone: '11912345678'} },
+    { item: {prop1: 'Mariana Rocha', prop2: 'mariana@hotmail.com', phone: '21998765432'} },
+    { item: {prop1: 'João Mendes', prop2: 'joao.mendes@yahoo.com', phone: '31955554444'} },
+    { item: {prop1: 'Ana Paula', prop2: 'ana.paula@empresa.com', phone: '41966667777'} }
   ];
 
   viewMode: 'cards' | 'table' = 'cards';
@@ -18,6 +19,8 @@ export class UsersComponent implements OnInit {
   colunas = ['nome', 'email', 'telefone'];
 
   exibirFormulario = false;
+
+  constructor(private notification: NotificationService) {}
 
   ngOnInit(): void {
     this.verifyWindowSize();
@@ -39,10 +42,11 @@ export class UsersComponent implements OnInit {
       item: {
         prop1: user?.name,
         prop2: user?.email,
-        prop3: user?.phone
+        phone: user?.phone
       }
     }
     this.users.push(newUser);
+    this.notification.success('Usuário cadastrado com sucesso!', 'Cadastro');
     this.exibirFormulario = false;
   }
 

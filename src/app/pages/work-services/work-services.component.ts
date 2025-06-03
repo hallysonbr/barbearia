@@ -8,9 +8,9 @@ import { GridItem } from 'src/app/interfaces/grid-item';
 })
 export class WorkServicesComponent {
   services: GridItem[] = [
-    { item: {prop1: 'Corte Clássico', prop2: 'Um corte tradicional e elegante.'}, price: 'R$ 40,00', icon: '✂️' },
-    { item: {prop1: 'Barba Completa', prop2: 'Modelagem e acabamento da barba.'}, price: 'R$ 30,00', icon: '🧔' },
-    { item: {prop1: 'Corte + Barba', prop2: 'Pacote completo de cabelo e barba.'}, price: 'R$ 60,00', icon: '💇‍♂️' },
-    { item: {prop1: 'Hidratação Capilar', prop2: 'Tratamento para cabelo saudável.'}, price: 'R$ 50,00', icon: '💆‍♂️' },
+    { item: {prop1: 'Corte Clássico', prop2: 'Um corte tradicional e elegante.'}, price: '40', icon: '✂️' },
+    { item: {prop1: 'Barba Completa', prop2: 'Modelagem e acabamento da barba.'}, price: '30', icon: '🧔' },
+    { item: {prop1: 'Corte + Barba', prop2: 'Pacote completo de cabelo e barba.'}, price: '60', icon: '💇‍♂️' },
+    { item: {prop1: 'Hidratação Capilar', prop2: 'Tratamento para cabelo saudável.'}, price: '50', icon: '💆‍♂️' },
   ]
 }
