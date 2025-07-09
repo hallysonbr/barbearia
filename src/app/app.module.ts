@@ -23,6 +23,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { PhonePipe } from './pipes/phone.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AppointmentsComponent } from './pages/appointments/appointments.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -41,7 +42,8 @@ registerLocaleData(localePt, 'pt-BR');
     TableComponent,
     UsersFormComponent,
     ModalComponent,
-    PhonePipe
+    PhonePipe,
+    AppointmentsComponent
   ],
   exports: [
     PhonePipe

@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="title">Agendamentos Cadastrados</h1>
+  <p class="subtitle">Confira abaixo a lista de agendamentos registrados no sistema.</p>
+
+  <div class="visualization-toggle">
+    <button (click)="toogleExibition('cards')" [class.active]="viewMode === 'cards'">Cards</button>
+    <button (click)="toogleExibition('table')" [class.active]="viewMode === 'table'">Tabela</button>
+  </div>
+
+  <button class="add-btn" (click)="exibirForm()">Novo Agendamento</button>
+
+  <app-modal
+    *ngIf="exibirFormulario"
+    title="Novo Agendamento"
+    (close)="cancelRegister()">
+      <!-- <app-users-form
+      (save)="addAppointment($event)"
+      (cancel)="cancelRegister()">
+      </app-users-form> -->
+  </app-modal>
+
+  <ng-container *ngIf="viewMode === 'cards'">
+    <app-grid [items]="appointments" tipo="agendamentos"></app-grid>
+  </ng-container>
+
+  <ng-container *ngIf="viewMode === 'table'">
+    <app-table [data]="appointments" [columns]="colunas"></app-table>
+  </ng-container>
+</div>
