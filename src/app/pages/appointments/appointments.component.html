@@ -13,10 +13,10 @@
     *ngIf="exibirFormulario"
     title="Novo Agendamento"
     (close)="cancelRegister()">
-      <!-- <app-users-form
+      <app-appointments-form
       (save)="addAppointment($event)"
       (cancel)="cancelRegister()">
-      </app-users-form> -->
+      </app-appointments-form>
   </app-modal>
 
   <ng-container *ngIf="viewMode === 'cards'">

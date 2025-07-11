@@ -1,0 +1,28 @@
+<div class="appointment-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Selecione o tipo de atendimento</label>
+      <select formControlName="appointment">
+        <option value="" disabled>Escolha um serviço</option>
+        <option *ngFor="let service of services" [value]="service">{{ service }}</option>
+      </select>
+      <small *ngIf="appointment?.invalid && appointment?.touched" class="error-message">
+          {{ getAppointmentErrorMessage() }}
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Usuário</label>
+      <input formControlName="userName" type="text" />
+      <small *ngIf="userName?.invalid && userName?.touched" class="error-message">
+          {{ getUserNameErrorMessage() }}
+      </small>
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" [disabled]="form.invalid">Salvar</button>
+      <button type="button" (click)="onCancel()">Cancelar</button>
+    </div>
+
+  </form>
+</div>

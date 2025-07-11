@@ -24,6 +24,7 @@ import { PhonePipe } from './pipes/phone.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppointmentsComponent } from './pages/appointments/appointments.component';
+import { AppointmentsFormComponent } from './pages/appointments/appointments-form/appointments-form.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -43,7 +44,8 @@ registerLocaleData(localePt, 'pt-BR');
     UsersFormComponent,
     ModalComponent,
     PhonePipe,
-    AppointmentsComponent
+    AppointmentsComponent,
+    AppointmentsFormComponent
   ],
   exports: [
     PhonePipe
