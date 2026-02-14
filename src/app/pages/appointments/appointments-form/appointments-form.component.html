@@ -2,7 +2,9 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Selecione o tipo de atendimento</label>
-      <select formControlName="appointment">
+      <select
+        formControlName="appointment"
+        [class.input-error]="appointment?.invalid && appointment?.touched">
         <option value="" disabled>Escolha um serviço</option>
         <option *ngFor="let service of services" [value]="service">{{ service }}</option>
       </select>
@@ -13,7 +15,10 @@
 
     <div class="form-group">
       <label>Usuário</label>
-      <input formControlName="userName" type="text" />
+      <input
+        formControlName="userName"
+        type="text"
+        [class.input-error]="userName?.invalid && userName?.touched" />
       <small *ngIf="userName?.invalid && userName?.touched" class="error-message">
           {{ getUserNameErrorMessage() }}
       </small>

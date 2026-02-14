@@ -1,20 +1,32 @@
 // Cores principais
-$primary-color: #007bff;
-$secondary-color: #6c757d;
+$primary-color: #667eea;
+$primary-color-dark: #764ba2;
+$secondary-color: #4a5568;
 $success-color: #28a745;
-$danger-color: #dc3545;
+$danger-color: #c53030;
 $info-color: #17a2b8;
-$background-color: #f4f4f4;
-$border-color: #dcdcdc;
+$background-color: #f7fafc;
+$border-color: #e2e8f0;
 $card-background-color: #ffffff;
-$muted-text-color: #6c757d;
-$muted-color: #a0a4b8;
+$muted-text-color: #718096;
+$muted-color: #cbd5e0;
 
 // Cores de texto
-$text-color: #333;
-$text-light: #888;
-$text-dark: #000;
+$text-color: #2d3748;
+$text-light: #718096;
+$text-dark: #1a202c;
+$text-placeholder: #a0aec0;
+
+// Cores de erro
+$error-color: #c53030;
+$error-bg: #fff5f5;
+$error-border: #feb2b2;
+$error-input: #f56565;
+
+// Gradiente principal
+$gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
 // Outras variáveis de estilo
-$border-radius: 4px;
+$border-radius: 8px;
+$border-radius-large: 12px;
 $font-family: 'Arial', sans-serif;

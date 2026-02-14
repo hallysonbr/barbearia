@@ -1,6 +1,11 @@
-<div class="login-page">
-  <app-card title="Login">
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Bem-vindo</h2>
+      <p>Faça login para continuar</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
       <div class="form-group">
         <label for="email">E-mail</label>
         <input
@@ -8,11 +13,13 @@
           id="email"
           formControlName="email"
           placeholder="Digite seu e-mail"
-          [class.invalid]="email?.invalid && email?.touched"
+          [class.input-error]="email?.invalid && (email?.dirty || email?.touched)"
         />
-        <small *ngIf="email?.invalid && email?.touched" class="error-message">
-          {{ getEmailErrorMessage() }}
-        </small>
+        <div class="error-message" *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+          <i class="pi pi-exclamation-circle"></i>
+          <span *ngIf="email?.errors?.['required']">O e-mail é obrigatório</span>
+          <span *ngIf="email?.errors?.['email']">Digite um e-mail válido</span>
+        </div>
       </div>
 
       <div class="form-group">
@@ -22,17 +29,22 @@
           id="password"
           formControlName="password"
           placeholder="Digite sua senha"
-          [class.invalid]="password?.invalid && password?.touched"
+          [class.input-error]="password?.invalid && (password?.dirty || password?.touched)"
         />
-        <small *ngIf="password?.invalid && password?.touched" class="error-message">
-          A senha é obrigatória.
-        </small>
+        <div class="error-message" *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+          <i class="pi pi-exclamation-circle"></i>
+          <span *ngIf="password?.errors?.['required']">A senha é obrigatória</span>
+        </div>
       </div>
 
-      <button class="custom-button" type="submit" [disabled]="loginForm.invalid">
-        Entrar
+      <div class="error-message error-message-login" *ngIf="errorMessage">
+        <i class="pi pi-times-circle"></i>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <button type="submit" class="btn-login" [disabled]="loginForm.invalid">
+        <span>Entrar</span>
       </button>
-      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
     </form>
-  </app-card>
+  </div>
 </div>

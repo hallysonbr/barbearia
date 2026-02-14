@@ -1,32 +1,78 @@
 @import '../../../../assets/scss/styles';
 
 .user-form {
-  background: white;
-  padding: 1rem;
+  background: #ffffff;
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   margin-top: 1rem;
 
   .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 
     label {
       display: block;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #2d3748;
+      font-size: 14px;
     }
 
     input {
       width: 100%;
-      height: 2rem;
-      border: 1px solid #ccc;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
       border-radius: 8px;
+      font-size: 14px;
+      color: #2d3748;
+      background-color: #ffffff;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      &::placeholder {
+        color: #a0aec0;
+      }
+
+      &.input-error {
+        border-color: #f56565;
+        background-color: #fff5f5;
+
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.1);
+        }
+      }
     }
 
     .error-message {
-      color: $danger-color;
-      font-size: 14px;
-      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background-color: #fff5f5;
+      border: 1px solid #feb2b2;
+      border-radius: 6px;
+      color: #c53030;
+      font-size: 13px;
+      font-weight: 500;
+      margin-top: 6px;
+      animation: fadeIn 0.3s ease-out;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -34,25 +80,42 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+    margin-top: 2rem;
 
     button {
-      padding: 0.5rem 1.25rem;
+      padding: 12px 32px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
 
       &:first-child {
-        background-color: $primary-color;
-        color: #fff;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+
+        &:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
 
         &:disabled {
-          background-color: lighten($primary-color, 20%);
+          background: #cbd5e0;
+          box-shadow: none;
+          transform: none;
+          cursor: not-allowed;
         }
       }
 
       &:last-child {
-        background-color: $muted-color;
-        color: #333;
+        background-color: #e2e8f0;
+        color: #4a5568;
+
+        &:hover {
+          background-color: #cbd5e0;
+        }
       }
     }
   }

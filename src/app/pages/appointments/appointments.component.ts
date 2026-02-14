@@ -20,7 +20,7 @@ export class AppointmentsComponent {
 
   viewMode: 'cards' | 'table' = 'cards';
 
-  colunas = ['serviço', 'nome'];
+  colunas = ['Serviço', 'Nome'];
 
   exibirFormulario = false;
 

@@ -7,10 +7,11 @@
   border-radius: $border-radius;
 
   .dashboard-title {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 600;
     margin-bottom: 20px;
     text-align: center;
-    color: $primary-color;
+    color: $text-color;
   }
 
   .dashboard-cards {

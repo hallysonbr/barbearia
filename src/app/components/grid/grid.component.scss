@@ -9,43 +9,46 @@
 }
 
 .grid-card {
-  background: $card-background-color;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
-  word-wrap: break-word;       // quebra em palavras longas
-  overflow-wrap: break-word;   // alternativa moderna
-  white-space: normal;         // garante que o texto possa quebrar
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
   }
 
   .icon {
     font-size: 40px;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #667eea;
   }
 
   h2 {
     font-size: 20px;
-    color: $text-color;
+    font-weight: 600;
+    color: #2d3748;
     margin: 10px 0;
   }
 
   p {
-    font-size: 16px;
-    color: $muted-text-color;
+    font-size: 14px;
+    color: #718096;
+    line-height: 1.5;
   }
 
   .price {
-    font-size: 18px;
-    color: $secondary-color;
-    font-weight: bold;
-    margin-top: 10px;
+    font-size: 20px;
+    color: #667eea;
+    font-weight: 700;
+    margin-top: 15px;
     display: block;
   }
 

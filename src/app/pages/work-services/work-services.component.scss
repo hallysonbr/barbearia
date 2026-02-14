@@ -8,13 +8,14 @@
 
   .title {
     font-size: 28px;
-    color: $primary-color;
-    font-weight: bold;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 8px;
   }
 
   .subtitle {
-    font-size: 18px;
-    color: $muted-text-color;
-    margin-bottom: 20px;
+    font-size: 14px;
+    color: #718096;
+    margin-bottom: 32px;
   }
 }
