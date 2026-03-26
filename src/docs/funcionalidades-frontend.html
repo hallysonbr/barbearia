@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbearia Classica - Mapa de Funcionalidades do Frontend</title>
+  <style>
+    :root {
+      --primary: #667eea;
+      --primary-dark: #764ba2;
+      --success: #28a745;
+      --danger: #c53030;
+      --warning: #e6a817;
+      --info: #17a2b8;
+      --bg: #f7fafc;
+      --text: #2d3748;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ============ HEADER ============ */
+    .hero {
+      background: var(--gradient);
+      color: #fff;
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+    .hero h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: 12px; }
+    .hero p  { font-size: 1.15rem; opacity: .9; max-width: 720px; margin: 0 auto; }
+
+    /* ============ NAV TABS ============ */
+    .nav-tabs {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      padding: 20px 24px;
+      background: #fff; border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav-tabs a {
+      text-decoration: none; color: var(--primary);
+      padding: 8px 18px; border-radius: 20px;
+      font-weight: 500; font-size: .95rem;
+      border: 1px solid var(--primary);
+      transition: all .2s;
+    }
+    .nav-tabs a:hover { background: var(--primary); color: #fff; }
+
+    /* ============ CONTAINERS ============ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-child { border-bottom: none; }
+
+    .section-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 28px;
+    }
+    .section-header .badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--gradient); color: #fff; font-size: 1.3rem;
+    }
+    .section-header h2 { font-size: 1.6rem; }
+    .section-header p  { color: #718096; font-size: .95rem; margin-top: 2px; }
+
+    /* ============ CARDS GRID ============ */
+    .cards { display: grid; gap: 20px; }
+    .cards.col-2 { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+    .cards.col-3 { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .cards.col-1 { grid-template-columns: 1fr; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+    .card h3 {
+      font-size: 1.1rem; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card p, .card li { font-size: .93rem; color: #4a5568; }
+    .card ul { padding-left: 20px; margin-top: 8px; }
+    .card ul li { margin-bottom: 4px; }
+
+    /* ============ STATUS BADGES ============ */
+    .status {
+      display: inline-block; padding: 3px 10px; border-radius: 12px;
+      font-size: .75rem; font-weight: 600; text-transform: uppercase;
+    }
+    .status.mock    { background: #fef3cd; color: #856404; }
+    .status.done    { background: #d4edda; color: #155724; }
+    .status.partial { background: #d1ecf1; color: #0c5460; }
+
+    /* ============ TABLE ============ */
+    .data-table {
+      width: 100%; border-collapse: collapse; margin-top: 16px;
+      font-size: .9rem;
+    }
+    .data-table th,
+    .data-table td {
+      padding: 10px 14px; text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table th {
+      background: #f1f5f9; font-weight: 600; color: #4a5568;
+      position: sticky; top: 0;
+    }
+    .data-table tr:hover td { background: #f8fafc; }
+
+    /* ============ FLOW DIAGRAM ============ */
+    .flow {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+      margin: 16px 0;
+    }
+    .flow-step {
+      background: var(--gradient); color: #fff;
+      padding: 10px 20px; border-radius: 8px;
+      font-size: .88rem; font-weight: 500;
+    }
+    .flow-arrow { font-size: 1.2rem; color: var(--primary); }
+
+    /* ============ CODE BLOCK ============ */
+    .code-block {
+      background: #1a202c; color: #e2e8f0;
+      border-radius: 8px; padding: 16px 20px;
+      font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+      font-size: .85rem; overflow-x: auto;
+      margin: 12px 0;
+    }
+    .code-block .kw  { color: #63b3ed; }
+    .code-block .str { color: #68d391; }
+    .code-block .cmt { color: #718096; }
+
+    /* ============ ARCHITECTURE DIAGRAM ============ */
+    .arch-box {
+      border: 2px solid var(--primary); border-radius: 12px;
+      padding: 20px; margin: 16px 0; background: #f0f4ff;
+    }
+    .arch-box h4 { color: var(--primary); margin-bottom: 10px; }
+    .arch-row {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;
+    }
+    .arch-item {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 16px; font-size: .85rem;
+    }
+    .arch-item.highlight { border-color: var(--primary); background: #eef2ff; font-weight: 600; }
+
+    /* ============ SUMMARY COUNTER ============ */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px; margin: 24px 0;
+    }
+    .summary-item {
+      text-align: center; padding: 20px;
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    }
+    .summary-item .number {
+      font-size: 2.2rem; font-weight: 700;
+      background: var(--gradient); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .summary-item .label { font-size: .85rem; color: #718096; margin-top: 4px; }
+
+    /* ============ FOOTER ============ */
+    footer {
+      text-align: center; padding: 32px 24px;
+      color: #a0aec0; font-size: .85rem;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.8rem; }
+      .cards.col-2, .cards.col-3 { grid-template-columns: 1fr; }
+      .flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- HERO -->
+  <!-- ============================================================ -->
+  <div class="hero">
+    <h1>Barbearia Classica</h1>
+    <p>Mapa completo de funcionalidades do MVP Angular &mdash; Sistema de agendamentos e controle de atendimentos</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- NAVIGATION -->
+  <!-- ============================================================ -->
+  <nav class="nav-tabs">
+    <a href="#visao-geral">Vis&atilde;o Geral</a>
+    <a href="#autenticacao">Autentica&ccedil;&atilde;o</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#servicos">Servi&ccedil;os</a>
+    <a href="#clientes">Clientes</a>
+    <a href="#agendamentos">Agendamentos</a>
+    <a href="#componentes">Componentes</a>
+    <a href="#dados-mockados">Dados Mockados</a>
+    <a href="#arquitetura">Arquitetura</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- ============================================================ -->
+    <!-- VISAO GERAL -->
+    <!-- ============================================================ -->
+    <section id="visao-geral">
+      <div class="section-header">
+        <div class="badge">&#128200;</div>
+        <div>
+          <h2>Vis&atilde;o Geral do MVP</h2>
+          <p>N&uacute;meros consolidados de tudo que foi constru&iacute;do</p>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <div class="summary-item">
+          <div class="number">5</div>
+          <div class="label">P&aacute;ginas</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">6</div>
+          <div class="label">Componentes Reusav&eacute;is</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">2</div>
+          <div class="label">Services</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">1</div>
+          <div class="label">Guard</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">1</div>
+          <div class="label">Directive</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">1</div>
+          <div class="label">Pipe</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">5</div>
+          <div class="label">Rotas Protegidas</div>
+        </div>
+        <div class="summary-item">
+          <div class="number">100%</div>
+          <div class="label">Dados Mockados</div>
+        </div>
+      </div>
+
+      <div class="cards col-2">
+        <div class="card">
+          <h3>&#128736; Stack Tecnol&oacute;gica</h3>
+          <ul>
+            <li><strong>Angular 16.2</strong> &mdash; Framework SPA</li>
+            <li><strong>TypeScript</strong> &mdash; Tipagem est&aacute;tica</li>
+            <li><strong>SCSS</strong> &mdash; Estiliza&ccedil;&atilde;o com vari&aacute;veis de design system</li>
+            <li><strong>ngx-toastr</strong> &mdash; Notifica&ccedil;&otilde;es toast</li>
+            <li><strong>ngx-mask</strong> &mdash; M&aacute;scaras de input (telefone)</li>
+            <li><strong>RxJS 7.8</strong> &mdash; Programa&ccedil;&atilde;o reativa</li>
+            <li><strong>Docker</strong> &mdash; Container com Nginx Alpine</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#127919; Funcionalidades Entregues</h3>
+          <ul>
+            <li>Autentica&ccedil;&atilde;o com login/logout mockado</li>
+            <li>Dashboard com resumo de atendimentos</li>
+            <li>Cat&aacute;logo de servi&ccedil;os da barbearia</li>
+            <li>Cadastro e listagem de clientes</li>
+            <li>Agendamentos com sele&ccedil;&atilde;o de servicos</li>
+            <li>Visualiza&ccedil;&atilde;o em grid (cards) e tabela</li>
+            <li>Responsividade mobile-first</li>
+            <li>Design system com vari&aacute;veis SCSS</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- AUTENTICACAO -->
+    <!-- ============================================================ -->
+    <section id="autenticacao">
+      <div class="section-header">
+        <div class="badge">&#128274;</div>
+        <div>
+          <h2>Autentica&ccedil;&atilde;o &amp; Autoriza&ccedil;&atilde;o</h2>
+          <p>Fluxo de login, guard de rotas e controle de visibilidade</p>
+        </div>
+      </div>
+
+      <div class="cards col-2">
+        <div class="card">
+          <h3>&#128273; Login <span class="status mock">MOCKADO</span></h3>
+          <p>Formul&aacute;rio reativo com valida&ccedil;&atilde;o inline de campos obrigat&oacute;rios (e-mail v&aacute;lido + senha).</p>
+          <ul>
+            <li><strong>Credencial mockada:</strong> <code>admin@barbearia.com</code> / <code>123456</code></li>
+            <li>Token armazenado em <code>localStorage</code> como <code>'mock-token'</code></li>
+            <li>Feedback de erro inline: <em>"E-mail ou senha inv&aacute;lidos"</em></li>
+            <li>Ao acessar <code>/login</code>, o usu&aacute;rio &eacute; sempre deslogado</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128737; Prote&ccedil;&atilde;o de Rotas</h3>
+          <p>Guard <code>AuthGuard</code> implementado com <code>CanActivate</code>.</p>
+          <ul>
+            <li>Verifica <code>isAuthenticated()</code> via <code>BehaviorSubject</code></li>
+            <li>Redireciona para <code>/login</code> se n&atilde;o autenticado</li>
+            <li>Rotas protegidas: <code>/home</code>, <code>/services</code>, <code>/appointments</code>, <code>/users</code></li>
+            <li>Rota wildcard (<code>**</code>) redireciona para <code>/login</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128065; Diretiva de Visibilidade</h3>
+          <p>Diretiva estrutural <code>*appShowIfAuth</code> controla exibi&ccedil;&atilde;o de elementos baseada no estado de autentica&ccedil;&atilde;o.</p>
+          <ul>
+            <li>Assina o <code>isAuthenticated$</code> Observable do AuthService</li>
+            <li>Cria/remove a view dinamicamente via <code>ViewContainerRef</code></li>
+            <li>Utilizada no <code>&lt;app-header&gt;</code> para ocultar navega&ccedil;&atilde;o na p&aacute;gina de login</li>
+            <li>Implementa <code>ngOnDestroy</code> para evitar memory leaks</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128260; Fluxo de Autentica&ccedil;&atilde;o</h3>
+          <div class="flow">
+            <span class="flow-step">/login</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Valida credenciais</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Armazena token</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Navega /home</span>
+          </div>
+          <div class="flow">
+            <span class="flow-step">Logout</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Remove token</span>
+            <span class="flow-arrow">&rarr;</span>
+            <span class="flow-step">Redireciona /login</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DASHBOARD -->
+    <!-- ============================================================ -->
+    <section id="dashboard">
+      <div class="section-header">
+        <div class="badge">&#128202;</div>
+        <div>
+          <h2>Dashboard &mdash; Home</h2>
+          <p>Rota <code>/home</code> &mdash; Resumo de atendimentos com cards de estat&iacute;sticas</p>
+        </div>
+      </div>
+
+      <div class="cards col-3">
+        <div class="card" style="border-left: 4px solid var(--primary);">
+          <h3>&#128197; Atendimentos de Hoje</h3>
+          <p>Exibe a quantidade de atendimentos agendados para o dia atual.</p>
+          <p><span class="status mock">MOCKADO</span> N&uacute;mero aleat&oacute;rio (1&ndash;100) gerado a cada carregamento da p&aacute;gina.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--warning);">
+          <h3>&#9203; Aguardando Atendimento</h3>
+          <p>Exibe a quantidade de clientes que est&atilde;o esperando para serem atendidos.</p>
+          <p><span class="status mock">MOCKADO</span> N&uacute;mero aleat&oacute;rio (1&ndash;100) gerado a cada carregamento da p&aacute;gina.</p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--success);">
+          <h3>&#128198; Agendamentos para Amanh&atilde;</h3>
+          <p>Exibe a quantidade de agendamentos j&aacute; marcados para o dia seguinte.</p>
+          <p><span class="status mock">MOCKADO</span> N&uacute;mero aleat&oacute;rio (1&ndash;100) gerado a cada carregamento da p&aacute;gina.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <h3>&#128161; Requisitos para o Backend</h3>
+        <ul>
+          <li>Endpoint que retorne contagens reais baseadas em data (hoje, amanh&atilde;)</li>
+          <li>Filtro por status do agendamento (aguardando, em atendimento, conclu&iacute;do)</li>
+          <li>Possibilidade futura de gr&aacute;ficos e relat&oacute;rios</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SERVICOS -->
+    <!-- ============================================================ -->
+    <section id="servicos">
+      <div class="section-header">
+        <div class="badge">&#9986;</div>
+        <div>
+          <h2>Cat&aacute;logo de Servi&ccedil;os</h2>
+          <p>Rota <code>/services</code> &mdash; Visualiza&ccedil;&atilde;o dos servi&ccedil;os oferecidos pela barbearia</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>&#128203; Servi&ccedil;os Cadastrados <span class="status mock">MOCKADO</span></h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Icone</th>
+              <th>Nome do Servi&ccedil;o</th>
+              <th>Descri&ccedil;&atilde;o</th>
+              <th>Pre&ccedil;o</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&#9986;</td>
+              <td><strong>Corte Cl&aacute;ssico</strong></td>
+              <td>Um corte tradicional e elegante.</td>
+              <td>R$ 40,00</td>
+            </tr>
+            <tr>
+              <td>&#129496;</td>
+              <td><strong>Barba Completa</strong></td>
+              <td>Modelagem e acabamento da barba.</td>
+              <td>R$ 30,00</td>
+            </tr>
+            <tr>
+              <td>&#128135;</td>
+              <td><strong>Corte + Barba</strong></td>
+              <td>Pacote completo de cabelo e barba.</td>
+              <td>R$ 60,00</td>
+            </tr>
+            <tr>
+              <td>&#128134;</td>
+              <td><strong>Hidrata&ccedil;&atilde;o Capilar</strong></td>
+              <td>Tratamento para cabelo saud&aacute;vel.</td>
+              <td>R$ 50,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cards col-2" style="margin-top: 20px;">
+        <div class="card">
+          <h3>&#9989; Funcionalidades Implementadas</h3>
+          <ul>
+            <li>Listagem em grid de cards com &iacute;cone, nome, descri&ccedil;&atilde;o e pre&ccedil;o</li>
+            <li>Formata&ccedil;&atilde;o de pre&ccedil;o em BRL (locale <code>pt-BR</code>)</li>
+            <li>Layout responsivo</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128683; Funcionalidades Pendentes (Backend)</h3>
+          <ul>
+            <li>CRUD completo de servi&ccedil;os (criar, editar, excluir)</li>
+            <li>Upload de imagem/&iacute;cone do servi&ccedil;o</li>
+            <li>Gerenciamento de pre&ccedil;os e promo&ccedil;&otilde;es</li>
+            <li>Ativa&ccedil;&atilde;o/desativa&ccedil;&atilde;o de servi&ccedil;os</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CLIENTES -->
+    <!-- ============================================================ -->
+    <section id="clientes">
+      <div class="section-header">
+        <div class="badge">&#128101;</div>
+        <div>
+          <h2>Gest&atilde;o de Clientes</h2>
+          <p>Rota <code>/users</code> &mdash; Cadastro e listagem de clientes da barbearia</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>&#128100; Clientes Cadastrados <span class="status mock">MOCKADO</span></h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Carlos Silva</td>
+              <td>carlos@gmail.com</td>
+              <td>(11) 9 1234-5678</td>
+            </tr>
+            <tr>
+              <td>Mariana Rocha</td>
+              <td>mariana@hotmail.com</td>
+              <td>(21) 9 9876-5432</td>
+            </tr>
+            <tr>
+              <td>Jo&atilde;o Mendes</td>
+              <td>joao.mendes@yahoo.com</td>
+              <td>(31) 9 5555-4444</td>
+            </tr>
+            <tr>
+              <td>Ana Paula</td>
+              <td>ana.paula@empresa.com</td>
+              <td>(41) 9 6666-7777</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cards col-2" style="margin-top: 20px;">
+        <div class="card">
+          <h3>&#9989; Funcionalidades Implementadas</h3>
+          <ul>
+            <li>Listagem com altern&acirc;ncia entre <strong>Grid (Cards)</strong> e <strong>Tabela</strong></li>
+            <li>Formul&aacute;rio de cadastro em modal com valida&ccedil;&atilde;o reativa</li>
+            <li>M&aacute;scara de telefone brasileiro <code>(XX) X XXXX-XXXX</code></li>
+            <li>Pipe de formata&ccedil;&atilde;o de telefone (11 d&iacute;gitos)</li>
+            <li>Notifica&ccedil;&atilde;o toast de sucesso ao cadastrar</li>
+            <li>Responsividade: for&ccedil;a view de cards em telas &le; 768px</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128221; Campos do Formul&aacute;rio</h3>
+          <table class="data-table">
+            <thead>
+              <tr><th>Campo</th><th>Tipo</th><th>Valida&ccedil;&atilde;o</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Nome</td><td>text</td><td>Obrigat&oacute;rio</td></tr>
+              <tr><td>E-mail</td><td>email</td><td>Obrigat&oacute;rio + formato e-mail</td></tr>
+              <tr><td>Telefone</td><td>text (mask)</td><td>Obrigat&oacute;rio + m&aacute;scara BR</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- AGENDAMENTOS -->
+    <!-- ============================================================ -->
+    <section id="agendamentos">
+      <div class="section-header">
+        <div class="badge">&#128197;</div>
+        <div>
+          <h2>Agendamentos</h2>
+          <p>Rota <code>/appointments</code> &mdash; Cria&ccedil;&atilde;o e listagem de agendamentos</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>&#128467; Agendamentos Registrados <span class="status mock">MOCKADO</span></h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Icone</th>
+              <th>Servi&ccedil;o</th>
+              <th>Cliente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>&#9986;</td><td>Corte Cl&aacute;ssico</td><td>Carlos Silva</td></tr>
+            <tr><td>&#129496;</td><td>Barba Completa</td><td>Jos&eacute; Maria</td></tr>
+            <tr><td>&#128135;</td><td>Corte + Barba</td><td>Altinho do Santos</td></tr>
+            <tr><td>&#128134;</td><td>Hidrata&ccedil;&atilde;o Capilar</td><td>Maria Aparecida</td></tr>
+            <tr><td>&#9986;</td><td>Corte Cl&aacute;ssico</td><td>Jo&atilde;o da Silva</td></tr>
+            <tr><td>&#129496;</td><td>Barba Completa</td><td>Ana Paula</td></tr>
+            <tr><td>&#128135;</td><td>Corte + Barba</td><td>Pedro Henrique</td></tr>
+            <tr><td>&#128134;</td><td>Hidrata&ccedil;&atilde;o Capilar</td><td>Maria Clara</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cards col-2" style="margin-top: 20px;">
+        <div class="card">
+          <h3>&#9989; Funcionalidades Implementadas</h3>
+          <ul>
+            <li>Listagem com altern&acirc;ncia entre <strong>Grid (Cards)</strong> e <strong>Tabela</strong></li>
+            <li>Formul&aacute;rio de novo agendamento em modal</li>
+            <li>Dropdown de sele&ccedil;&atilde;o de servi&ccedil;o (4 op&ccedil;&otilde;es hardcoded)</li>
+            <li>Campo de nome do cliente</li>
+            <li>&Iacute;cone atribu&iacute;do automaticamente via <code>handleIcons()</code></li>
+            <li>Notifica&ccedil;&atilde;o toast de sucesso</li>
+            <li>Responsividade: for&ccedil;a view de cards em telas &le; 768px</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128221; Campos do Formul&aacute;rio</h3>
+          <table class="data-table">
+            <thead>
+              <tr><th>Campo</th><th>Tipo</th><th>Valida&ccedil;&atilde;o</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Servi&ccedil;o</td><td>select (dropdown)</td><td>Obrigat&oacute;rio</td></tr>
+              <tr><td>Nome do Cliente</td><td>text</td><td>Obrigat&oacute;rio</td></tr>
+            </tbody>
+          </table>
+          <h4 style="margin-top: 14px;">Mapeamento de &Iacute;cones</h4>
+          <table class="data-table">
+            <thead><tr><th>Servi&ccedil;o</th><th>&Iacute;cone</th></tr></thead>
+            <tbody>
+              <tr><td>Corte Cl&aacute;ssico</td><td>scissors &#9986;</td></tr>
+              <tr><td>Barba Completa</td><td>beard &#129496;</td></tr>
+              <tr><td>Corte + Barba</td><td>haircut &#128135;</td></tr>
+              <tr><td>Hidrata&ccedil;&atilde;o Capilar</td><td>massage &#128134;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <h3>&#128683; Dados Ausentes no MVP (Necess&aacute;rios no Backend)</h3>
+        <ul>
+          <li><strong>Data e Hor&aacute;rio:</strong> N&atilde;o h&aacute; sele&ccedil;&atilde;o de data/hora no agendamento</li>
+          <li><strong>Barbeiro:</strong> N&atilde;o h&aacute; sele&ccedil;&atilde;o de profissional</li>
+          <li><strong>Status:</strong> N&atilde;o h&aacute; controle de status (agendado, em atendimento, conclu&iacute;do, cancelado)</li>
+          <li><strong>Dura&ccedil;&atilde;o:</strong> N&atilde;o h&aacute; c&aacute;lculo de tempo de atendimento</li>
+          <li><strong>Vincular cliente cadastrado:</strong> O campo &eacute; texto livre, n&atilde;o vincula a clientes existentes</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- COMPONENTES REUTILIZAVEIS -->
+    <!-- ============================================================ -->
+    <section id="componentes">
+      <div class="section-header">
+        <div class="badge">&#128230;</div>
+        <div>
+          <h2>Componentes Reutiliz&aacute;veis</h2>
+          <p>Biblioteca de componentes compartilhados do projeto</p>
+        </div>
+      </div>
+
+      <div class="cards col-2">
+        <div class="card">
+          <h3>&#128196; Header</h3>
+          <p>Cabe&ccedil;alho com navega&ccedil;&atilde;o e logout.</p>
+          <ul>
+            <li>Brand: "Barbearia Classica"</li>
+            <li>Links: Home, Servi&ccedil;os, Agendamentos, Clientes, Sair</li>
+            <li>Menu hamburger para mobile (<code>menuOpen</code> toggle)</li>
+            <li>Exibido apenas quando autenticado (via <code>*appShowIfAuth</code>)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128202; Card</h3>
+          <p>Card de estat&iacute;stica para o dashboard.</p>
+          <ul>
+            <li><strong>Inputs:</strong> <code>title: string</code>, <code>count: number</code></li>
+            <li>Suporta proje&ccedil;&atilde;o de conte&uacute;do via <code>&lt;ng-content&gt;</code></li>
+            <li>Exibe <code>count</code> somente quando &gt; 0</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128194; Grid</h3>
+          <p>Grid responsivo de cards para listagem de itens.</p>
+          <ul>
+            <li><strong>Input:</strong> <code>items: GridItem[]</code></li>
+            <li>Renderiza &iacute;cone, propriedades din&acirc;micas, e pre&ccedil;o</li>
+            <li>Aplica <code>PhonePipe</code> quando chave &eacute; <code>'phone'</code></li>
+            <li>Formata pre&ccedil;os com <code>currency:'BRL':'symbol':'1.2-2':'pt-BR'</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128203; Table</h3>
+          <p>Tabela de dados din&acirc;mica.</p>
+          <ul>
+            <li><strong>Inputs:</strong> <code>data: any[]</code>, <code>columns: string[]</code></li>
+            <li>Colunas configur&aacute;veis via array de strings</li>
+            <li>Itera dinamicamente as chaves do objeto <code>item.item</code></li>
+            <li>Aplica <code>PhonePipe</code> para chave <code>'phone'</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128468; Modal</h3>
+          <p>Di&aacute;logo modal gen&eacute;rico.</p>
+          <ul>
+            <li><strong>Input:</strong> <code>title: string</code></li>
+            <li><strong>Output:</strong> <code>close: EventEmitter&lt;void&gt;</code></li>
+            <li>Backdrop overlay + &aacute;rea de conte&uacute;do</li>
+            <li>Bot&atilde;o "X" para fechar</li>
+            <li>Proje&ccedil;&atilde;o de conte&uacute;do via <code>&lt;ng-content&gt;</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>&#128386; Footer</h3>
+          <p>Rodap&eacute; com copyright (atualmente desabilitado).</p>
+          <ul>
+            <li>Texto: "&copy; 2024 Barbearia Classica"</li>
+            <li>Comentado no <code>app.component.html</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- DADOS MOCKADOS -->
+    <!-- ============================================================ -->
+    <section id="dados-mockados">
+      <div class="section-header">
+        <div class="badge">&#128451;</div>
+        <div>
+          <h2>Dados Mockados &amp; Regras de Neg&oacute;cio</h2>
+          <p>Tudo que est&aacute; hardcoded e precisa ser substitu&iacute;do pela API</p>
+        </div>
+      </div>
+
+      <div class="cards col-1">
+        <div class="card">
+          <h3>&#128209; Mapa Completo de Mocks</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Local (Componente)</th>
+                <th>O que est&aacute; mockado</th>
+                <th>Onde substituir</th>
+                <th>Endpoint necess&aacute;rio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>AuthService</code></td>
+                <td>Credenciais fixas + token mock</td>
+                <td>Service HTTP</td>
+                <td><code>POST /api/auth/login</code></td>
+              </tr>
+              <tr>
+                <td><code>HomeComponent</code></td>
+                <td>N&uacute;meros aleat&oacute;rios (1&ndash;100)</td>
+                <td>Service HTTP</td>
+                <td><code>GET /api/dashboard/resumo</code></td>
+              </tr>
+              <tr>
+                <td><code>WorkServicesComponent</code></td>
+                <td>Array de 4 servi&ccedil;os hardcoded</td>
+                <td>Service HTTP</td>
+                <td><code>GET /api/servicos</code></td>
+              </tr>
+              <tr>
+                <td><code>UsersComponent</code></td>
+                <td>Array de 4 clientes hardcoded</td>
+                <td>Service HTTP</td>
+                <td><code>GET /api/clientes</code></td>
+              </tr>
+              <tr>
+                <td><code>UsersFormComponent</code></td>
+                <td>Adi&ccedil;&atilde;o em array local (sem persist&ecirc;ncia)</td>
+                <td>Service HTTP</td>
+                <td><code>POST /api/clientes</code></td>
+              </tr>
+              <tr>
+                <td><code>AppointmentsComponent</code></td>
+                <td>Array de 8 agendamentos hardcoded</td>
+                <td>Service HTTP</td>
+                <td><code>GET /api/agendamentos</code></td>
+              </tr>
+              <tr>
+                <td><code>AppointmentsFormComponent</code></td>
+                <td>Adi&ccedil;&atilde;o em array local + dropdown hardcoded</td>
+                <td>Service HTTP</td>
+                <td><code>POST /api/agendamentos</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>&#9888; Regras de Neg&oacute;cio Identificadas no Frontend</h3>
+          <ul>
+            <li><strong>Autentica&ccedil;&atilde;o:</strong> Login com e-mail + senha; token armazenado para sess&atilde;o</li>
+            <li><strong>Servi&ccedil;os:</strong> Cada servi&ccedil;o tem nome, descri&ccedil;&atilde;o, pre&ccedil;o e &iacute;cone</li>
+            <li><strong>Clientes:</strong> Campos obrigat&oacute;rios: nome, e-mail (formato v&aacute;lido), telefone (11 d&iacute;gitos BR)</li>
+            <li><strong>Agendamentos:</strong> Vinculam um servi&ccedil;o a um nome de cliente; &iacute;cone derivado do tipo de servi&ccedil;o</li>
+            <li><strong>Dashboard:</strong> Contagens segmentadas por per&iacute;odo (hoje, aguardando, amanh&atilde;)</li>
+            <li><strong>Visualiza&ccedil;&atilde;o:</strong> Dual-mode (cards/tabela) para listagens, com auto-switch responsivo</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ARQUITETURA -->
+    <!-- ============================================================ -->
+    <section id="arquitetura">
+      <div class="section-header">
+        <div class="badge">&#127959;</div>
+        <div>
+          <h2>Arquitetura do Projeto Angular</h2>
+          <p>Estrutura de pastas, m&oacute;dulos e depend&ecirc;ncias</p>
+        </div>
+      </div>
+
+      <div class="arch-box">
+        <h4>Estrutura de Camadas</h4>
+        <div class="arch-row">
+          <div class="arch-item highlight">Pages (5)</div>
+          <div class="arch-item">LoginComponent</div>
+          <div class="arch-item">HomeComponent</div>
+          <div class="arch-item">WorkServicesComponent</div>
+          <div class="arch-item">UsersComponent + Form</div>
+          <div class="arch-item">AppointmentsComponent + Form</div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-item highlight">Components (6)</div>
+          <div class="arch-item">Header</div>
+          <div class="arch-item">Footer</div>
+          <div class="arch-item">Card</div>
+          <div class="arch-item">Grid</div>
+          <div class="arch-item">Table</div>
+          <div class="arch-item">Modal</div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-item highlight">Services (2)</div>
+          <div class="arch-item">AuthService</div>
+          <div class="arch-item">NotificationService</div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-item highlight">Infra</div>
+          <div class="arch-item">AuthGuard</div>
+          <div class="arch-item">ShowIfAuthDirective</div>
+          <div class="arch-item">PhonePipe</div>
+          <div class="arch-item">GridItem interface</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 20px;">
+        <h3>&#128640; Mapa de Rotas</h3>
+        <div class="code-block">
+<span class="cmt">// app-routing.module.ts</span>
+<span class="kw">const</span> routes: Routes = [
+  { path: <span class="str">'login'</span>,        component: LoginComponent },
+  { path: <span class="str">'home'</span>,         component: HomeComponent,         canActivate: [AuthGuard] },
+  { path: <span class="str">'appointments'</span>, component: AppointmentsComponent, canActivate: [AuthGuard] },
+  { path: <span class="str">'services'</span>,     component: WorkServicesComponent, canActivate: [AuthGuard] },
+  { path: <span class="str">'users'</span>,        component: UsersComponent,        canActivate: [AuthGuard] },
+  { path: <span class="str">'**'</span>,           redirectTo: <span class="str">'login'</span> }
+];
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================================ -->
+  <footer>
+    <p>Documento gerado automaticamente &mdash; Barbearia Classica MVP &mdash; Angular 16</p>
+    <p>Dados extra&iacute;dos em Mar&ccedil;o/2026 para planejamento do backend .NET Core</p>
+  </footer>
+
+</body>
+</html>

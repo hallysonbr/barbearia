@@ -149,8 +149,8 @@ export class NomeGuard implements CanActivate {
 
 ### Autenticação
 - Token armazenado em `localStorage` com chave `'token'`
-- Use [`AuthService`](src/app/services/auth.service.ts) para operações de autenticação
-- Proteja rotas com [`AuthGuard`](src/app/guards/auth.guard.ts)
+- Use [`AuthService`](../src/app/services/auth.service.ts) para operações de autenticação
+- Proteja rotas com [`AuthGuard`](../src/app/guards/auth.guard.ts)
 - Exemplo de proteção de rota:
 ```typescript
 {
@@ -201,7 +201,7 @@ export class NomeGuard implements CanActivate {
 
 ### Estilos
 - Use **SCSS** para estilização
-- Estilos globais em [`styles.scss`](src/styles.scss)
+- Estilos globais em [`styles.scss`](../src/styles.scss)
 - Estilos de componente em arquivo `.scss` separado
 - Use classes CSS semânticas e descritivas
 - Prefira flexbox/grid para layouts
@@ -209,7 +209,7 @@ export class NomeGuard implements CanActivate {
 ## Regras de Código
 
 ### TypeScript
-- **Strict Mode**: Sempre respeite as configurações do [`tsconfig.json`](tsconfig.json)
+- **Strict Mode**: Sempre respeite as configurações do [`tsconfig.json`](../tsconfig.json)
 - Use `const` por padrão, `let` apenas quando necessário
 - Evite `any`, sempre tipar explicitamente
 - Use optional chaining (`?.`) e nullish coalescing (`??`)
